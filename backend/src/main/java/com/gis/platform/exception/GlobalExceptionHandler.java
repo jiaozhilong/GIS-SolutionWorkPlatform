@@ -23,9 +23,13 @@ public class GlobalExceptionHandler {
         return ApiResult.fail(1000, "请求体格式错误");
     }
 
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ApiResult<?> handleIllegalArgument(IllegalArgumentException e) {
+        return ApiResult.fail(2000, e.getMessage());
+    }
+
     @ExceptionHandler(Exception.class)
     public ApiResult<?> handleException(Exception e) {
         return ApiResult.fail(9999, "系统异常: " + e.getMessage());
     }
 }
-

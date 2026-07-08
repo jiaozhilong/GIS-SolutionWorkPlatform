@@ -37,3 +37,18 @@ body {
   width: 100%;
 }
 
+.page-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.form-row {
+  display: flex;
+  width: 100%;
+}
+
+.form-item-half {
+  flex: 1;
+}

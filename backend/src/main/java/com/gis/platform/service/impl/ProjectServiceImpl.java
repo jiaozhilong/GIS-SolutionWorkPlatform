@@ -24,18 +24,27 @@ public class ProjectServiceImpl implements ProjectService {
     @Override
     public ProjectVO create(ProjectReq req) {
         Project project = new Project();
-        project.setName(req.getName());
-        project.setCustomerName(req.getCustomerName());
-        project.setIndustry(req.getIndustry());
-        project.setGisDomain(req.getGisDomain());
-        project.setStatus(defaultValue(req.getStatus(), "OPPORTUNITY"));
-        project.setPriority(defaultValue(req.getPriority(), "P2"));
-        project.setDescription(req.getDescription());
-        project.setGithubRepoUrl(req.getGithubRepoUrl());
+        applyReq(project, req);
+        project.setStatus(defaultValue(project.getStatus(), "OPPORTUNITY"));
+        project.setPriority(defaultValue(project.getPriority(), "P2"));
         project.setCreatedAt(LocalDateTime.now());
         project.setUpdatedAt(LocalDateTime.now());
         projectMapper.insert(project);
         return ProjectVO.from(project);
+    }
+
+    @Override
+    public ProjectVO update(String id, ProjectReq req) {
+        Project project = requireProject(id);
+        applyReq(project, req);
+        project.setUpdatedAt(LocalDateTime.now());
+        projectMapper.updateById(project);
+        return ProjectVO.from(project);
+    }
+
+    @Override
+    public ProjectVO detail(String id) {
+        return ProjectVO.from(requireProject(id));
     }
 
     @Override
@@ -46,8 +55,32 @@ public class ProjectServiceImpl implements ProjectService {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public void delete(String id) {
+        requireProject(id);
+        projectMapper.deleteById(id);
+    }
+
+    private Project requireProject(String id) {
+        Project project = projectMapper.selectById(id);
+        if (project == null) {
+            throw new IllegalArgumentException("项目不存在: " + id);
+        }
+        return project;
+    }
+
+    private void applyReq(Project project, ProjectReq req) {
+        project.setName(req.getName());
+        project.setCustomerName(req.getCustomerName());
+        project.setIndustry(req.getIndustry());
+        project.setGisDomain(req.getGisDomain());
+        project.setStatus(req.getStatus());
+        project.setPriority(req.getPriority());
+        project.setDescription(req.getDescription());
+        project.setGithubRepoUrl(req.getGithubRepoUrl());
+    }
+
     private String defaultValue(String value, String fallback) {
         return value == null || value.trim().isEmpty() ? fallback : value;
     }
 }
-

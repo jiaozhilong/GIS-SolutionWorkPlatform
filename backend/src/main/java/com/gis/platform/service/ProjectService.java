@@ -7,6 +7,8 @@ import java.util.List;
 
 public interface ProjectService {
     ProjectVO create(ProjectReq req);
+    ProjectVO update(String id, ProjectReq req);
+    ProjectVO detail(String id);
     List<ProjectVO> list();
+    void delete(String id);
 }
-
