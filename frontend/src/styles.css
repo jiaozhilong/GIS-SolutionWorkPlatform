@@ -52,3 +52,12 @@ body {
 .form-item-half {
   flex: 1;
 }
+
+.search-input {
+  flex: 1;
+  margin-right: 8px;
+}
+
+.search-result-card {
+  margin-top: 16px;
+}

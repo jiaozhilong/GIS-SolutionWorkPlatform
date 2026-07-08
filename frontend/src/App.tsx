@@ -37,6 +37,7 @@ import {
 import { useState } from 'react';
 import { getHello } from './api/hello';
 import { createProject, deleteProject, listProjects, type Project, type ProjectPayload, updateProject } from './api/projects';
+import ImaConfigPage from './pages/Settings/ImaConfig';
 
 const { Header, Sider, Content } = Layout;
 const { TextArea } = Input;
@@ -80,7 +81,8 @@ function App() {
         <Content className="app-content">
           {activeKey === 'dashboard' && <Dashboard />}
           {activeKey === 'projects' && <ProjectManager />}
-          {activeKey !== 'dashboard' && activeKey !== 'projects' && <ComingSoon activeKey={activeKey} />}
+          {activeKey === 'knowledge' && <ImaConfigPage />}
+          {activeKey !== 'dashboard' && activeKey !== 'projects' && activeKey !== 'knowledge' && <ComingSoon activeKey={activeKey} />}
         </Content>
       </Layout>
     </Layout>

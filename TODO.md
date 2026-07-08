@@ -3,7 +3,7 @@
 TODO-01: [COMPLETE] 项目脚手架 - Maven + Spring Boot + Vite + PostgreSQL 初始化
 TODO-02: [COMPLETE] 数据库 - 建表SQL + MyBatis-Plus实体 + 初始化脚本
 TODO-03: [COMPLETE] 项目管理 - CRUD接口 + 前端列表/详情页
-TODO-04: [PENDING] IMA配置模块 - 配置页 + 连接测试 + 检索测试
+TODO-04: [COMPLETE] IMA配置模块 - 配置页 + 连接测试 + 检索测试
 TODO-05: [PENDING] 大模型配置模块 - 配置页 + 连接测试
 TODO-06: [PENDING] GitHub配置模块 - 配置页 + 仓库文件读取
 TODO-07: [PENDING] Skill管理 - CRUD + Prompt模板 + 测试运行
