@@ -38,6 +38,7 @@ import { useState } from 'react';
 import { getHello } from './api/hello';
 import { createProject, deleteProject, listProjects, type Project, type ProjectPayload, updateProject } from './api/projects';
 import ImaConfigPage from './pages/Settings/ImaConfig';
+import LlmConfigPage from './pages/Settings/LlmConfig';
 
 const { Header, Sider, Content } = Layout;
 const { TextArea } = Input;
@@ -82,7 +83,8 @@ function App() {
           {activeKey === 'dashboard' && <Dashboard />}
           {activeKey === 'projects' && <ProjectManager />}
           {activeKey === 'knowledge' && <ImaConfigPage />}
-          {activeKey !== 'dashboard' && activeKey !== 'projects' && activeKey !== 'knowledge' && <ComingSoon activeKey={activeKey} />}
+          {activeKey === 'settings' && <LlmConfigPage />}
+          {activeKey !== 'dashboard' && activeKey !== 'projects' && activeKey !== 'knowledge' && activeKey !== 'settings' && <ComingSoon activeKey={activeKey} />}
         </Content>
       </Layout>
     </Layout>

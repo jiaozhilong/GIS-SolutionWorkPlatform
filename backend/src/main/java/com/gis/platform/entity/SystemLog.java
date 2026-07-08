@@ -15,9 +15,10 @@ public class SystemLog {
     private String module;
     private String action;
     private String refId;
+    private String logType;
     private String level;
     private String message;
     private String detail;
+    private Long durationMs;
     private LocalDateTime createdAt;
 }
-

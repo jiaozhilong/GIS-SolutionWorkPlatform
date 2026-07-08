@@ -170,8 +170,13 @@ CREATE TABLE IF NOT EXISTS system_logs (
     module VARCHAR(100),
     action VARCHAR(100),
     ref_id VARCHAR(36),
+    log_type VARCHAR(50),
     level VARCHAR(20) DEFAULT 'INFO',
     message TEXT,
     detail TEXT,
+    duration_ms BIGINT,
     created_at TIMESTAMP DEFAULT NOW()
 );
+
+ALTER TABLE system_logs ADD COLUMN IF NOT EXISTS log_type VARCHAR(50);
+ALTER TABLE system_logs ADD COLUMN IF NOT EXISTS duration_ms BIGINT;
