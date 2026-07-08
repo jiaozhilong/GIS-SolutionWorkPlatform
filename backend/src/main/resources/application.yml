@@ -8,7 +8,12 @@ spring:
     url: jdbc:postgresql://localhost:5432/gis_platform
     driver-class-name: org.postgresql.Driver
     username: ${DB_USERNAME:postgres}
-    password: ${DB_PASSWORD:postgres}
+    password: ${DB_PASSWORD:postgis}
+  sql:
+    init:
+      mode: always
+      schema-locations: classpath:db/init.sql
+      continue-on-error: true
 
 mybatis-plus:
   configuration:
@@ -19,4 +24,3 @@ mybatis-plus:
 
 knife4j:
   enable: true
-
