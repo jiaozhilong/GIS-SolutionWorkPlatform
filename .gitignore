@@ -1,0 +1,10 @@
+target/
+node_modules/
+dist/
+.m2/
+.idea/
+.vscode/
+*.log
+*.tsbuildinfo
+.env
+.env.local
