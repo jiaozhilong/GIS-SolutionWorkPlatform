@@ -1,4 +1,4 @@
-import { DeleteOutlined, EditOutlined, PlusOutlined, ReloadOutlined } from '@ant-design/icons';
+﻿import { DeleteOutlined, EditOutlined, PlusOutlined, ReloadOutlined } from '@ant-design/icons';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { Alert, Button, Card, Empty, Form, Input, InputNumber, Modal, Popconfirm, Result, Select, Skeleton, Slider, Space, Table, Tag, Typography, message } from 'antd';
 import { useState } from 'react';
@@ -96,7 +96,7 @@ export default function LlmConfigPage() {
   };
 
   return (
-    <Space direction="vertical" size={16} className="content-stack">
+    <Space direction="vertical" size={16} className="content-stack gis-page">
       <div className="page-heading">
         <div>
           <Typography.Title level={3}>大模型配置</Typography.Title>
@@ -124,7 +124,7 @@ export default function LlmConfigPage() {
       )}
 
       {configsQuery.isSuccess && configsQuery.data.length === 0 && (
-        <Card>
+        <Card className="gis-glass-card">
           <Empty description="还没有大模型配置">
             <Button type="primary" icon={<PlusOutlined />} onClick={openCreate}>
               新建第一条配置
@@ -134,7 +134,7 @@ export default function LlmConfigPage() {
       )}
 
       {configsQuery.isSuccess && configsQuery.data.length > 0 && (
-        <Card>
+        <Card className="gis-glass-card">
           <Table<LlmConfig>
             rowKey="id"
             dataSource={configsQuery.data}
@@ -222,4 +222,5 @@ export default function LlmConfigPage() {
     </Space>
   );
 }
+
 

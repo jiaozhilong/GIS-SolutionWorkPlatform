@@ -1,36 +1,23 @@
-* {
+﻿* {
   box-sizing: border-box;
+}
+
+html {
+  background: #071521;
 }
 
 body {
   margin: 0;
-  background: #f5f7fa;
-}
-
-.app-shell {
+  min-width: 320px;
   min-height: 100vh;
+  background: #071521;
 }
 
-.brand {
-  height: 56px;
-  display: flex;
-  align-items: center;
-  padding: 0 20px;
-  color: #ffffff;
-  font-weight: 700;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-}
-
-.app-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 24px;
-  border-bottom: 1px solid #edf0f5;
-}
-
-.app-content {
-  padding: 24px;
+button,
+input,
+textarea,
+select {
+  letter-spacing: 0;
 }
 
 .content-stack {

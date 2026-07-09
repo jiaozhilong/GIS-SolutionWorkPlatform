@@ -1,4 +1,4 @@
-import { DeleteOutlined, EditOutlined, PlusOutlined, ReloadOutlined, SearchOutlined } from '@ant-design/icons';
+﻿import { DeleteOutlined, EditOutlined, PlusOutlined, ReloadOutlined, SearchOutlined } from '@ant-design/icons';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { Button, Card, Empty, Form, Input, Modal, Popconfirm, Result, Select, Skeleton, Space, Table, Tag, Typography, message } from 'antd';
 import { useState } from 'react';
@@ -91,7 +91,7 @@ export default function ImaConfigPage() {
   };
 
   return (
-    <Space direction="vertical" size={16} className="content-stack">
+    <Space direction="vertical" size={16} className="content-stack gis-page">
       <div className="page-heading">
         <div>
           <Typography.Title level={3}>IMA 知识库配置</Typography.Title>
@@ -119,7 +119,7 @@ export default function ImaConfigPage() {
       )}
 
       {configsQuery.isSuccess && configsQuery.data.length === 0 && (
-        <Card>
+        <Card className="gis-glass-card">
           <Empty description="还没有 IMA 知识库配置">
             <Button type="primary" icon={<PlusOutlined />} onClick={openCreate}>
               新建第一条配置
@@ -129,7 +129,7 @@ export default function ImaConfigPage() {
       )}
 
       {configsQuery.isSuccess && configsQuery.data.length > 0 && (
-        <Card>
+        <Card className="gis-glass-card">
           <Table<ImaConfig>
             rowKey="id"
             dataSource={configsQuery.data}
@@ -223,7 +223,7 @@ export default function ImaConfigPage() {
         </Form>
 
         {searchResult && (
-          <Card className="search-result-card" title={`共找到 ${searchResult.totalFound} 条结果`}>
+          <Card className="search-result-card gis-glass-card" title={`共找到 ${searchResult.totalFound} 条结果`}>
             <Table
               rowKey="id"
               dataSource={searchResult.items}
@@ -241,3 +241,4 @@ export default function ImaConfigPage() {
     </Space>
   );
 }
+
