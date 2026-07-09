@@ -1,4 +1,4 @@
-﻿import { Alert, Button, Card, Result, Skeleton, Space, Typography } from 'antd';
+import { Alert, Button, Card, Result, Skeleton, Space, Typography } from 'antd';
 import { useQuery } from '@tanstack/react-query';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { getHello } from './api/hello';
@@ -10,6 +10,7 @@ import LlmConfigPage from './pages/Settings/LlmConfig';
 import GitHubConfigPage from './pages/Settings/GitHubConfig';
 import SkillManagerPage from './pages/Skills';
 import FlowManagerPage from './pages/Flows';
+import SystemLogsPage from './pages/Logs';
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
             <Route path="/settings/github" element={<GitHubConfigPage />} />
             <Route path="/skills" element={<SkillManagerPage />} />
             <Route path="/flows" element={<FlowManagerPage />} />
+            <Route path="/logs" element={<SystemLogsPage />} />
             <Route path="/templates" element={<ComingSoon title="模板管理" />} />
             <Route path="*" element={<Navigate to="/projects" replace />} />
           </Routes>
@@ -83,7 +85,3 @@ function ComingSoon({ title }: { title: string }) {
 }
 
 export default App;
-
-
-
-

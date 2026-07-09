@@ -1,7 +1,8 @@
-﻿import {
+import {
   ApiOutlined,
   AppstoreOutlined,
   DatabaseOutlined,
+  FileSearchOutlined,
   FileTextOutlined,
   GithubOutlined,
   NodeIndexOutlined,
@@ -16,6 +17,7 @@ const navItems = [
   { path: '/skills', icon: <ApiOutlined />, label: '技能管理' },
   { path: '/flows', icon: <NodeIndexOutlined />, label: '流程编排' },
   { path: '/templates', icon: <FileTextOutlined />, label: '模板管理' },
+  { path: '/logs', icon: <FileSearchOutlined />, label: '系统日志' },
   { path: '/settings/ima', icon: <DatabaseOutlined />, label: 'IMA 知识库' },
   { path: '/settings/llm', icon: <SettingOutlined />, label: '大模型配置' },
   { path: '/settings/github', icon: <GithubOutlined />, label: 'GitHub 配置' }
