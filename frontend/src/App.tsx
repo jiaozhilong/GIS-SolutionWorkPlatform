@@ -8,6 +8,7 @@ import ProjectManagerPage from './pages/Projects';
 import ImaConfigPage from './pages/Settings/ImaConfig';
 import LlmConfigPage from './pages/Settings/LlmConfig';
 import GitHubConfigPage from './pages/Settings/GitHubConfig';
+import SkillManagerPage from './pages/Skills';
 
 function App() {
   return (
@@ -30,7 +31,7 @@ function App() {
             <Route path="/settings/ima" element={<ImaConfigPage />} />
             <Route path="/settings/llm" element={<LlmConfigPage />} />
             <Route path="/settings/github" element={<GitHubConfigPage />} />
-            <Route path="/skills" element={<ComingSoon title="技能管理" />} />
+            <Route path="/skills" element={<SkillManagerPage />} />
             <Route path="/flows" element={<ComingSoon title="流程编排" />} />
             <Route path="/templates" element={<ComingSoon title="模板管理" />} />
             <Route path="*" element={<Navigate to="/projects" replace />} />
@@ -81,5 +82,6 @@ function ComingSoon({ title }: { title: string }) {
 }
 
 export default App;
+
 
 
