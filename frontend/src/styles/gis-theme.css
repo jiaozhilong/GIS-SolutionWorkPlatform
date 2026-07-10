@@ -1,4 +1,4 @@
-﻿:root {
+:root {
   --gis-bg: #071521;
   --gis-panel: rgba(9, 25, 39, 0.84);
   --gis-panel-strong: rgba(10, 31, 48, 0.94);
@@ -343,4 +343,122 @@
   font-family: Consolas, 'Courier New', monospace;
   font-size: 13px;
   line-height: 1.6;
+}
+
+.login-shell {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: #050b14;
+  color: var(--gis-text);
+}
+
+.brand-panel {
+  position: relative;
+  flex: 0 0 55%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at 48% 45%, rgba(24, 214, 200, 0.16), rgba(5, 11, 20, 0.96) 58%);
+}
+
+.gis-globe-canvas {
+  position: absolute;
+  inset: 0;
+}
+
+.brand-overlay {
+  position: absolute;
+  left: 56px;
+  bottom: 52px;
+  z-index: 3;
+  max-width: 560px;
+}
+
+.brand-overlay h1.ant-typography {
+  margin: 10px 0 8px;
+  color: #e6f7ff;
+  font-size: 38px;
+  font-weight: 800;
+}
+
+.brand-pulse {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #18d6c8;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.brand-pulse::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: #4ade80;
+  box-shadow: 0 0 18px rgba(74, 222, 128, 0.8);
+}
+
+.brand-metrics {
+  display: grid;
+  grid-template-columns: auto 1fr auto 1fr auto 1fr;
+  gap: 8px 10px;
+  max-width: 520px;
+  margin-top: 24px;
+  align-items: baseline;
+  color: #94a9bd;
+}
+
+.brand-metrics strong {
+  color: #e6f7ff;
+  font-size: 24px;
+}
+
+.login-panel {
+  flex: 0 0 45%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 36px;
+  background: rgba(8, 18, 31, 0.94);
+  border-left: 1px solid rgba(122, 220, 255, 0.16);
+  backdrop-filter: blur(20px);
+}
+
+.login-card {
+  width: min(420px, 100%);
+  padding: 34px;
+  border: 1px solid rgba(122, 220, 255, 0.18);
+  border-radius: 8px;
+  background: rgba(9, 25, 39, 0.78);
+  box-shadow: 0 22px 70px rgba(0, 0, 0, 0.36);
+}
+
+.login-card h2.ant-typography {
+  margin: 6px 0 8px;
+  color: #e6f7ff;
+}
+
+.login-card .ant-form {
+  margin-top: 28px;
+}
+
+.globe-city-label {
+  display: inline-flex;
+  padding: 2px 5px;
+  border: 1px solid rgba(250, 204, 21, 0.42);
+  border-radius: 4px;
+  background: rgba(5, 11, 20, 0.72);
+  color: #fde68a;
+  font-size: 10px;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+@media (max-width: 860px) {
+  .brand-panel { display: none; }
+  .login-panel { flex: 1; padding: 20px; }
+  .login-card { padding: 24px; }
 }

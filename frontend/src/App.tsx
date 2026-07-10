@@ -1,9 +1,12 @@
 import { Alert, Button, Card, Result, Skeleton, Space, Typography } from 'antd';
+import { LogoutOutlined } from '@ant-design/icons';
 import { useQuery } from '@tanstack/react-query';
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes, useNavigate } from 'react-router-dom';
 import { getHello } from './api/hello';
+import AuthGuard from './components/AuthGuard';
 import GisBackground from './components/GisBackground';
 import GisSidebar from './components/GisSidebar';
+import LoginPage from './pages/Login';
 import ProjectManagerPage from './pages/Projects';
 import ImaConfigPage from './pages/Settings/ImaConfig';
 import LlmConfigPage from './pages/Settings/LlmConfig';
@@ -11,8 +14,30 @@ import GitHubConfigPage from './pages/Settings/GitHubConfig';
 import SkillManagerPage from './pages/Skills';
 import FlowManagerPage from './pages/Flows';
 import SystemLogsPage from './pages/Logs';
+import { useAuthStore } from './stores/authStore';
 
 function App() {
+  return (
+    <Routes>
+      <Route path="/login" element={<LoginPage />} />
+      <Route element={<AuthGuard />}>
+        <Route path="/*" element={<WorkbenchShell />} />
+      </Route>
+    </Routes>
+  );
+}
+
+function WorkbenchShell() {
+  const navigate = useNavigate();
+  const username = useAuthStore((state) => state.realName || state.username || 'admin');
+  const role = useAuthStore((state) => state.role || 'USER');
+  const clearAuth = useAuthStore((state) => state.clearAuth);
+
+  const logout = () => {
+    clearAuth();
+    navigate('/login', { replace: true });
+  };
+
   return (
     <div className="gis-app-shell">
       <GisBackground />
@@ -23,7 +48,10 @@ function App() {
             <Typography.Text className="gis-topbar-kicker">LOCAL GIS AI WORKBENCH</Typography.Text>
             <Typography.Title level={3}>GIS 解决方案 AI 工作平台</Typography.Title>
           </div>
-          <Typography.Text className="gis-env-pill">本地开发环境</Typography.Text>
+          <Space>
+            <Typography.Text className="gis-env-pill">{username} · {role}</Typography.Text>
+            <Button icon={<LogoutOutlined />} onClick={logout}>退出</Button>
+          </Space>
         </header>
         <section className="gis-content">
           <Routes>
