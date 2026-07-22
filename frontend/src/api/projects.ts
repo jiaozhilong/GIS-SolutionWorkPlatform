@@ -1,5 +1,6 @@
 import { apiClient, type ApiResult } from './client';
 import type { FlowExecution } from './flows';
+import { normalizeArray } from './normalizers';
 
 export interface Project {
   id: string;
@@ -31,7 +32,7 @@ export interface PptRecord {
 
 export async function listProjects(): Promise<Project[]> {
   const response = await apiClient.get<ApiResult<Project[]>>('/projects');
-  return response.data.data;
+  return normalizeArray(response.data.data);
 }
 
 export async function createProject(payload: ProjectPayload): Promise<Project> {
@@ -56,7 +57,7 @@ export async function runProjectFlow(projectId: string, flowId: string, inputCon
 
 export async function listProjectFlowExecutions(projectId: string): Promise<FlowExecution[]> {
   const response = await apiClient.get<ApiResult<FlowExecution[]>>(`/projects/${projectId}/flow-executions`);
-  return response.data.data;
+  return normalizeArray(response.data.data);
 }
 
 export async function generateProjectPptOutline(projectId: string, title?: string): Promise<PptRecord> {
@@ -66,5 +67,5 @@ export async function generateProjectPptOutline(projectId: string, title?: strin
 
 export async function listProjectPptRecords(projectId: string): Promise<PptRecord[]> {
   const response = await apiClient.get<ApiResult<PptRecord[]>>(`/projects/${projectId}/ppt`);
-  return response.data.data;
+  return normalizeArray(response.data.data);
 }

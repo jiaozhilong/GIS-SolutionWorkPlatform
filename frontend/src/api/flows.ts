@@ -1,5 +1,7 @@
 ﻿import { apiClient, type ApiResult } from './client';
 
+import { normalizeArray } from './normalizers';
+
 export interface FlowNodePayload {
   clientId?: string;
   skillId: string;
@@ -65,7 +67,7 @@ export interface FlowExecution {
 
 export async function listFlows(): Promise<Flow[]> {
   const response = await apiClient.get<ApiResult<Flow[]>>('/flows');
-  return response.data.data;
+  return normalizeArray(response.data.data);
 }
 
 export async function createFlow(payload: FlowPayload): Promise<Flow> {
@@ -90,5 +92,5 @@ export async function executeFlow(id: string, inputContext: Record<string, unkno
 
 export async function listFlowExecutions(id: string): Promise<FlowExecution[]> {
   const response = await apiClient.get<ApiResult<FlowExecution[]>>(`/flows/${id}/executions`);
-  return response.data.data;
+  return normalizeArray(response.data.data);
 }

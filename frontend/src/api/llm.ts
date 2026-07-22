@@ -1,4 +1,5 @@
 import { apiClient, type ApiResult } from './client';
+import { normalizeArray } from './normalizers';
 
 export interface LlmConfig {
   id: string;
@@ -37,7 +38,7 @@ export interface LlmTestResult {
 
 export async function listLlmConfigs(): Promise<LlmConfig[]> {
   const response = await apiClient.get<ApiResult<LlmConfig[]>>('/llm/config');
-  return response.data.data;
+  return normalizeArray(response.data.data);
 }
 
 export async function createLlmConfig(payload: LlmConfigPayload): Promise<LlmConfig> {
@@ -57,6 +58,9 @@ export async function deleteLlmConfig(id: string): Promise<boolean> {
 
 export async function testLlmConfig(id: string): Promise<LlmTestResult> {
   const response = await apiClient.post<ApiResult<LlmTestResult>>(`/llm/config/${id}/test`);
-  return response.data.data;
+  return response.data.data || {
+    connected: false,
+    latencyMs: 0,
+    message: '测试接口未返回结果'
+  };
 }
-

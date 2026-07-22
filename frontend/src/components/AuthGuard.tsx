@@ -3,8 +3,8 @@ import { useAuthStore } from '../stores/authStore';
 
 export default function AuthGuard() {
   const location = useLocation();
-  const token = useAuthStore((state) => state.token);
-  if (!token) {
+  const isAuthenticated = useAuthStore((state) => state.runtimeMode === 'PREVIEW' || Boolean(state.token));
+  if (!isAuthenticated) {
     return <Navigate to="/login" replace state={{ from: location.pathname }} />;
   }
   return <Outlet />;

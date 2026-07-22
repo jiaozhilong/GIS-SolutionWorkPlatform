@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540" role="img" aria-label="GIS 三维架构静态预览">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#07151a"/>
+      <stop offset="0.52" stop-color="#0b2024"/>
+      <stop offset="1" stop-color="#07110f"/>
+    </linearGradient>
+    <linearGradient id="water" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#0d5b70" stop-opacity="0.66"/>
+      <stop offset="1" stop-color="#0891b2" stop-opacity="0.38"/>
+    </linearGradient>
+    <linearGradient id="tower" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2fd4bf"/>
+      <stop offset="1" stop-color="#0b4b55"/>
+    </linearGradient>
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <rect width="960" height="540" fill="url(#bg)"/>
+  <g opacity="0.2">
+    <path d="M0 430 L960 190" stroke="#50d6b2" stroke-width="1"/>
+    <path d="M0 360 L960 120" stroke="#50d6b2" stroke-width="1"/>
+    <path d="M60 540 L700 0" stroke="#0891b2" stroke-width="1"/>
+    <path d="M200 540 L840 0" stroke="#0891b2" stroke-width="1"/>
+  </g>
+  <path d="M120 340 C240 300 330 315 426 270 C550 212 664 226 818 166 L890 236 C736 292 612 278 488 334 C348 398 232 388 102 430 Z" fill="url(#water)" opacity="0.72"/>
+  <g transform="translate(480 318) rotate(-21) skewX(-16)" opacity="0.95">
+    <rect x="-320" y="-130" width="640" height="260" rx="18" fill="#0d1f23" stroke="#1f766d" stroke-opacity="0.58"/>
+    <g stroke="#50d6b2" stroke-opacity="0.28" stroke-width="2">
+      <path d="M-300 -90 H300"/>
+      <path d="M-300 -30 H300"/>
+      <path d="M-300 30 H300"/>
+      <path d="M-300 90 H300"/>
+      <path d="M-240 -120 V120"/>
+      <path d="M-150 -120 V120"/>
+      <path d="M-60 -120 V120"/>
+      <path d="M40 -120 V120"/>
+      <path d="M140 -120 V120"/>
+      <path d="M240 -120 V120"/>
+    </g>
+    <g filter="url(#glow)">
+      <rect x="-190" y="-82" width="54" height="112" rx="4" fill="url(#tower)"/>
+      <rect x="-88" y="-106" width="62" height="146" rx="4" fill="url(#tower)"/>
+      <rect x="36" y="-68" width="50" height="96" rx="4" fill="url(#tower)"/>
+      <rect x="136" y="-116" width="64" height="154" rx="4" fill="url(#tower)"/>
+      <rect x="224" y="-54" width="48" height="82" rx="4" fill="url(#tower)"/>
+    </g>
+  </g>
+  <g filter="url(#glow)" font-family="Arial, Microsoft YaHei, sans-serif" font-size="18">
+    <circle cx="670" cy="172" r="9" fill="#50d6b2"/>
+    <rect x="692" y="148" width="158" height="48" rx="8" fill="#0a2425" stroke="#50d6b2" stroke-opacity="0.55"/>
+    <text x="710" y="179" fill="#dffdf4">空间分析结果</text>
+    <circle cx="246" cy="368" r="9" fill="#0891b2"/>
+    <rect x="82" y="342" width="144" height="48" rx="8" fill="#071d22" stroke="#0891b2" stroke-opacity="0.55"/>
+    <text x="102" y="373" fill="#dffdf4">业务点位</text>
+  </g>
+  <text x="36" y="48" fill="#dffdf4" font-family="Arial, Microsoft YaHei, sans-serif" font-size="24" font-weight="700">GIS Architecture Preview</text>
+  <text x="36" y="82" fill="#8fcfc4" font-family="Arial, Microsoft YaHei, sans-serif" font-size="15">WebGL 不可用时显示的静态预览</text>
+</svg>

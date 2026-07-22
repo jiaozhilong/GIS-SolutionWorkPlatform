@@ -1,0 +1,26 @@
+{
+  "brand": {
+    "englishName": "GeoAgent Solution Workspace",
+    "chineseName": "GIS \u89e3\u51b3\u65b9\u6848\u667a\u80fd\u5de5\u4f5c\u53f0",
+    "taglineEn": "From Requirements to GIS Deliverables",
+    "taglineZh": "\u4ece\u5ba2\u6237\u9700\u6c42\u5230\u65b9\u6848\u4ea4\u4ed8"
+  },
+  "colors": {
+    "pageBackground": "#F4F7F6",
+    "cardBackground": "#FFFFFF",
+    "primary": "#167D64",
+    "spatialCyan": "#0891B2",
+    "textPrimary": "#18211E",
+    "textSecondary": "#667570",
+    "border": "#DFE7E3",
+    "warning": "#F59E0B",
+    "error": "#DC5A5A",
+    "darkNavigation": "#14211D",
+    "darkCanvas": "#061A18"
+  },
+  "radii": {
+    "card": 8,
+    "button": 6,
+    "panel": 8
+  }
+}

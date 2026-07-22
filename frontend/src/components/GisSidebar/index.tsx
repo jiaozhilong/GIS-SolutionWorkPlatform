@@ -1,50 +1,70 @@
-import {
-  ApiOutlined,
-  AppstoreOutlined,
-  DatabaseOutlined,
-  FileSearchOutlined,
-  FileTextOutlined,
-  GithubOutlined,
-  NodeIndexOutlined,
-  ProjectOutlined,
-  SettingOutlined
-} from '@ant-design/icons';
+import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
+import { Button, Tooltip } from 'antd';
 import { NavLink } from 'react-router-dom';
+import { getVisibleNavigationItems } from '../../config/navigation';
+import { useAuthStore } from '../../stores/authStore';
 
-const navItems = [
-  { path: '/dashboard', icon: <AppstoreOutlined />, label: '仪表盘' },
-  { path: '/projects', icon: <ProjectOutlined />, label: '项目管理' },
-  { path: '/skills', icon: <ApiOutlined />, label: '技能管理' },
-  { path: '/flows', icon: <NodeIndexOutlined />, label: '流程编排' },
-  { path: '/templates', icon: <FileTextOutlined />, label: '模板管理' },
-  { path: '/logs', icon: <FileSearchOutlined />, label: '系统日志' },
-  { path: '/settings/ima', icon: <DatabaseOutlined />, label: 'IMA 知识库' },
-  { path: '/settings/llm', icon: <SettingOutlined />, label: '大模型配置' },
-  { path: '/settings/github', icon: <GithubOutlined />, label: 'GitHub 配置' }
-];
+interface GisSidebarProps {
+  collapsed: boolean;
+  onCollapsedChange: (collapsed: boolean) => void;
+}
 
-export default function GisSidebar() {
+export default function GisSidebar({ collapsed, onCollapsedChange }: GisSidebarProps) {
+  const role = useAuthStore((state) => state.role);
+  const visibleNavItems = getVisibleNavigationItems(role);
+  const toggleCollapsed = () => onCollapsedChange(!collapsed);
+
   return (
-    <aside className="gis-sidebar">
+    <aside className={`gis-sidebar${collapsed ? ' is-collapsed' : ''}`}>
       <div className="gis-brand">
-        <span className="gis-brand__mark">GIS</span>
-        <div>
-          <strong>Solution WorkPlatform</strong>
-          <span>AI Enabled Geo Workbench</span>
+        <span className="gis-brand__mark">GA</span>
+        <div className="gis-brand__text">
+          <strong>GeoAgent Solution Workspace</strong>
+          <span>GIS 解决方案智能工作台</span>
         </div>
       </div>
+
       <nav className="gis-nav" aria-label="主导航">
-        {navItems.map((item) => (
-          <NavLink key={item.path} to={item.path} className={({ isActive }) => `gis-nav__item${isActive ? ' is-active' : ''}`}>
-            {item.icon}
-            <span>{item.label}</span>
-          </NavLink>
+        {visibleNavItems.map((item) => (
+          <Tooltip key={item.path} title={collapsed ? item.label : undefined} placement="right">
+            <NavLink
+              to={item.path}
+              title={collapsed ? item.label : undefined}
+              className={({ isActive }) => `gis-nav__item${isActive ? ' is-active' : ''}`}
+            >
+              <span className="gis-nav__icon">{item.icon}</span>
+              <span className="gis-nav__text">{item.label}</span>
+            </NavLink>
+          </Tooltip>
         ))}
       </nav>
+
       <div className="gis-sidebar__footer">
-        <span>POSTGIS</span>
-        <strong>localhost:5432</strong>
+        <span>From Requirements to GIS Deliverables</span>
+        <strong>从客户需求到方案交付</strong>
       </div>
+
+      <Button
+        className="gis-sidebar__collapse"
+        type="text"
+        aria-expanded={!collapsed}
+        icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+        onClick={(event) => {
+          if (event.detail === 0) toggleCollapsed();
+        }}
+        onMouseDown={(event) => {
+          event.preventDefault();
+          toggleCollapsed();
+        }}
+        onKeyDown={(event) => {
+          if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            toggleCollapsed();
+          }
+        }}
+      >
+        <span>{collapsed ? '展开菜单' : '收起菜单'}</span>
+      </Button>
     </aside>
   );
 }

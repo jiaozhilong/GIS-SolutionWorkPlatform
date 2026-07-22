@@ -1,0 +1,29 @@
+{
+  "sourceBoards": {
+    "loginDashboardProject": "boards/01-login-dashboard-project.png",
+    "skillsFlowArchitecturePpt": "boards/02-skills-flow-architecture-ppt.png",
+    "assetsOpsSettings": "boards/03-assets-ops-settings.png"
+  },
+  "pageReferences": {
+    "login": "raster/login-page-reference.png",
+    "loginBrandPanel": "raster/login-gis-brand-panel.png",
+    "dashboard": "raster/dashboard-reference.png",
+    "projectDetail": "raster/project-detail-reference.png",
+    "skills": "raster/skills-reference.png",
+    "flowEditor": "raster/flow-editor-reference.png",
+    "architecturePreview": "raster/architecture-preview-reference.png",
+    "pptEditor": "raster/ppt-editor-reference.png",
+    "templates": "raster/templates-reference.png",
+    "logs": "raster/logs-reference.png",
+    "users": "raster/users-reference.png",
+    "ima": "raster/ima-reference.png",
+    "llm": "raster/llm-reference.png",
+    "github": "raster/github-reference.png",
+    "githubReadme": "raster/github-readme-reference.png"
+  },
+  "icons": {
+    "logo": "icons/geoagent-logo.svg",
+    "sprite": "icons/solution-studio-icons.svg"
+  },
+  "tokens": "design-tokens.json"
+}

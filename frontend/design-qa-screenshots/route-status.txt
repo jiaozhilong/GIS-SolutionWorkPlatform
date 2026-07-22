@@ -1,0 +1,11 @@
+﻿/login HTTP 200
+/dashboard HTTP 200
+/projects HTTP 200
+/skills HTTP 200
+/flows HTTP 200
+/templates HTTP 200
+/logs HTTP 200
+/users HTTP 200
+/settings/ima HTTP 200
+/settings/llm HTTP 200
+/settings/github HTTP 200

@@ -1,4 +1,5 @@
-﻿import { apiClient, type ApiResult } from './client';
+import { apiClient, type ApiResult } from './client';
+import { normalizeArray } from './normalizers';
 
 export interface GitHubConfig {
   id: string;
@@ -44,9 +45,13 @@ export interface GitHubFileContent {
   content: string;
 }
 
+function repoUrl(owner: string, repo: string, suffix: string) {
+  return `/github/repos/${encodeURIComponent(owner)}/${encodeURIComponent(repo)}${suffix}`;
+}
+
 export async function listGitHubConfigs(): Promise<GitHubConfig[]> {
   const response = await apiClient.get<ApiResult<GitHubConfig[]>>('/github/config');
-  return response.data.data;
+  return normalizeArray(response.data.data);
 }
 
 export async function createGitHubConfig(payload: GitHubConfigPayload): Promise<GitHubConfig> {
@@ -66,20 +71,24 @@ export async function deleteGitHubConfig(id: string): Promise<boolean> {
 
 export async function testGitHubConfig(id: string): Promise<GitHubTestResult> {
   const response = await apiClient.post<ApiResult<GitHubTestResult>>(`/github/config/${id}/test`);
-  return response.data.data;
+  return response.data.data || {
+    connected: false,
+    latencyMs: 0,
+    message: '测试接口未返回结果'
+  };
 }
 
 export async function readGitHubReadme(owner: string, repo: string): Promise<string> {
-  const response = await apiClient.get<ApiResult<string>>(`/github/repos/${owner}/${repo}/readme`);
-  return response.data.data;
+  const response = await apiClient.get<ApiResult<string>>(repoUrl(owner, repo, '/readme'));
+  return response.data.data || '';
 }
 
 export async function readGitHubTree(owner: string, repo: string): Promise<GitHubTreeItem[]> {
-  const response = await apiClient.get<ApiResult<GitHubTreeItem[]>>(`/github/repos/${owner}/${repo}/tree`);
-  return response.data.data;
+  const response = await apiClient.get<ApiResult<GitHubTreeItem[]>>(repoUrl(owner, repo, '/tree'));
+  return normalizeArray(response.data.data);
 }
 
 export async function readGitHubFile(owner: string, repo: string, path: string): Promise<GitHubFileContent> {
-  const response = await apiClient.get<ApiResult<GitHubFileContent>>(`/github/repos/${owner}/${repo}/file`, { params: { path } });
+  const response = await apiClient.get<ApiResult<GitHubFileContent>>(repoUrl(owner, repo, '/file'), { params: { path } });
   return response.data.data;
 }

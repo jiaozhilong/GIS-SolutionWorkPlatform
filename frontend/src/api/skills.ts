@@ -1,4 +1,5 @@
-﻿import { apiClient, type ApiResult } from './client';
+import { apiClient, type ApiResult } from './client';
+import { normalizeArray } from './normalizers';
 
 export interface Skill {
   id: string;
@@ -41,7 +42,7 @@ export interface SkillTestResult {
 
 export async function listSkills(): Promise<Skill[]> {
   const response = await apiClient.get<ApiResult<Skill[]>>('/skills');
-  return response.data.data;
+  return normalizeArray(response.data.data);
 }
 
 export async function createSkill(payload: SkillPayload): Promise<Skill> {

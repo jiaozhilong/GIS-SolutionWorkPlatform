@@ -1,4 +1,5 @@
 import { apiClient, type ApiResult } from './client';
+import { normalizeArray } from './normalizers';
 
 export interface ImaConfig {
   id: string;
@@ -42,7 +43,7 @@ export interface ImaSearchResult {
 
 export async function listImaConfigs(): Promise<ImaConfig[]> {
   const response = await apiClient.get<ApiResult<ImaConfig[]>>('/ima/config');
-  return response.data.data;
+  return normalizeArray(response.data.data);
 }
 
 export async function createImaConfig(payload: ImaConfigPayload): Promise<ImaConfig> {
@@ -67,5 +68,9 @@ export async function testImaConfig(id: string): Promise<boolean> {
 
 export async function searchIma(kbIds: string[], query: string): Promise<ImaSearchResult> {
   const response = await apiClient.post<ApiResult<ImaSearchResult>>('/ima/search', { kbIds, query });
-  return response.data.data;
+  return {
+    query: response.data.data?.query || query,
+    totalFound: response.data.data?.totalFound || 0,
+    items: normalizeArray(response.data.data?.items)
+  };
 }

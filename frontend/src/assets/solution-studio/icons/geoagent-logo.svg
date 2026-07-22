@@ -1,0 +1,7 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="GeoAgent logo">
+  <rect x="4" y="4" width="56" height="56" rx="14" fill="#063A31"/>
+  <path d="M32 10L51.0526 21V43L32 54L12.9474 43V21L32 10Z" fill="#11C991"/>
+  <path d="M32 18L44.1244 25V39L32 46L19.8756 39V25L32 18Z" fill="#073C34"/>
+  <path d="M32 24L38.9282 28V36L32 40L25.0718 36V28L32 24Z" fill="#11C991"/>
+  <path d="M32 18V24M44 25L39 28M44 39L39 36M32 46V40M20 39L25 36M20 25L25 28" stroke="#C9FFF1" stroke-width="2" stroke-linecap="round"/>
+</svg>

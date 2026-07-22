@@ -8,3 +8,4 @@ dist/
 *.tsbuildinfo
 .env
 .env.local
+frontend/.qa-chrome-profile/
